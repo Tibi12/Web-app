@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.billRouter = exports.inventoryRouter = exports.userRouter = void 0;
+const express_1 = __importDefault(require("express"));
+const userController_1 = require("../controllers/userController");
+const inventoryController_1 = require("../controllers/inventoryController");
+const inventoryController_2 = require("../controllers/inventoryController");
+const billController_1 = require("../controllers/billController");
+exports.userRouter = express_1.default.Router();
+exports.inventoryRouter = express_1.default.Router();
+exports.billRouter = express_1.default.Router();
+exports.userRouter.post("/login", userController_1.userAuthenticateController);
+exports.inventoryRouter.get("/", inventoryController_1.inventoryFetchAllInventoryController);
+exports.inventoryRouter.post("/", inventoryController_1.addToInventoryController);
+exports.inventoryRouter.post("/update-stock", inventoryController_2.updateStockController);
+exports.billRouter.post("/generate-bill", billController_1.generateBillController);
+exports.billRouter.get("/fetch-bills", billController_1.fetchAllBillsController);
+exports.billRouter.get("/fetch-bills/:billId", billController_1.fetchBillController);
